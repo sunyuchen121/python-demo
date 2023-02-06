@@ -1,0 +1,4 @@
+rpm -qa bash-com* socat rsync nfs-utils *conntrack*
+LicenseCabinetOperation
+
+
