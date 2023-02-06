@@ -39,9 +39,22 @@ d = (1, 2)
 e = ("aaa111", a, 90)
 print(f"{hash(c)}\n{hash(d)}\n{hash(e)}")
 
-
 # https://www.runoob.com/python/python-func-zip.html
 test_zip_func = zip([1, 2, 3], ["a", "b", "c"], ("_1", "_2", "_3"))
 print(list(test_zip_func))
 
+
+class TestInitParamEdit(object):
+    def __init__(self, _list):
+        self._list = _list
+
+    def print(self):
+        print(self._list, id(self._list))
+
+
+aaa = [1, 2, [3, 3, 3]]
+test_inst = TestInitParamEdit(aaa)
+aaa.append("test_add")
+test_inst.print()
+print(id(aaa))
 
