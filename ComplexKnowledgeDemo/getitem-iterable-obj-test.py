@@ -49,3 +49,32 @@ print(inst_a.a)
 print(getattr(inst_a, "a"))
 
 print(inst_a.__class__)
+
+
+class TestGetattrAndGetattritube(object):
+    class_p1 = "asd"
+    class_p2 = "dsa"
+
+    def __init__(self, param1, param2):
+        self.inst_p1 = param1
+        self.inst_p2 = param2
+
+    def __getattribute__(self, item):
+        print("long     {}".format(item))
+        if item == "inst_p2":
+            return "覆盖inst_p2"
+        raise AttributeError
+
+    def __getattr__(self, item):
+        print("short     {}".format(item))
+        if item == "undefined_p":
+            return "11112222333"
+
+print('\n\n\n')
+test_inst = TestGetattrAndGetattritube("lll", "kkk")
+print(test_inst.class_p1)
+print(test_inst.__dict__)
+print(getattr(test_inst, "inst_p2"))
+print(TestGetattrAndGetattritube.class_p2)
+
+
