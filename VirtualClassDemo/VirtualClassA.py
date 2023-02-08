@@ -28,18 +28,18 @@ class TomBola(abc.ABC):
 
 class TomBolaChildA(TomBola):
 
-    def pick(self, position=-1):
+    def pick(self):
         pass
 
-    def load(self, item):
+    def load(self, items):
         pass
 
 
 class TomBolaChildB(TomBola):
-    def pick(self, position=-1):
+    def pick(self):
         pass
 
-    def load(self, item):
+    def load(self, items):
         pass
 
     def inspect(self):
