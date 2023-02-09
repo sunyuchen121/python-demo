@@ -7,12 +7,14 @@ class TomBola(abc.ABC):
     def __init__(self, iterable_obj):
         self._items = list(iterable_obj)
 
+    # 虚拟方法，子类必须复写该方法才能创建实例，否则就是无法创建实例的虚拟子类，创建实例会报错
     @abc.abstractmethod
     def pick(self):
         """
         随机删除一个元素, 并将被删除的元素返回
         """
 
+    # 虚拟方法
     @abc.abstractmethod
     def load(self, items):
         """
