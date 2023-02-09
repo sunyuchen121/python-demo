@@ -70,11 +70,10 @@ class TestGetattrAndGetattritube(object):
         if item == "undefined_p":
             return "11112222333"
 
+
 print('\n\n\n')
 test_inst = TestGetattrAndGetattritube("lll", "kkk")
 print(test_inst.class_p1)
 print(test_inst.__dict__)
 print(getattr(test_inst, "inst_p2"))
 print(TestGetattrAndGetattritube.class_p2)
-
-

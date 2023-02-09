@@ -47,3 +47,4 @@ class TomBolaChildB(TomBola):
 
     def loaded(self):
         pass
+
