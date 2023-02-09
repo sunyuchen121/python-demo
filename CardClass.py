@@ -1,4 +1,5 @@
 import collections
+import numbers
 
 Card = collections.namedtuple('Card', ['num', 'hs'])
 
@@ -12,12 +13,16 @@ class CardQue:
 
     def __getitem__(self, item):
         print(item)
-        if isinstance(item, int):
+        # if isinstance(item, int):
+        #     return self.cards[item]
+        # elif isinstance(item, str):
+        #     return "str"
+        # else:
+        #     print("KeyError: Key Must in Int or String !")
+        if isinstance(item, (numbers.Integral, slice)):
+            # 实现细节交给list
             return self.cards[item]
-        elif isinstance(item, str):
-            return "str"
-        else:
-            print("KeyError: Key Must in Int or String !")
+        raise TypeError("CardQue indices must be integers or slices!")
 
     def __len__(self):
         return len(self.cards)
@@ -32,13 +37,13 @@ class CardQue:
 
 if __name__ == '__main__':
     CardInst = CardQue()
-    # print(len(CardInst))
-    # print(CardInst[2])
+    print(len(CardInst))
+    print(CardInst[2:6])
     # print(CardInst["asd555"])
-    #
-    # for card in CardInst:
-    #     print(111)
-    #
+
+    for card in CardInst:
+        print('\n')
+
     print("%r" % CardInst)
     print(CardInst)
     print("{}".format(CardInst))
