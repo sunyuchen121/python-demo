@@ -46,7 +46,7 @@ print("-" * 100)
 # 正确方式是：把Iterable当作迭代器的生成工厂，每次iter(Iterable)都生成一个新的迭代器。不能把Iterator当作操作实例，因为他只能迭代一次
 # Iterable的__iter__返回一个Iterator实例，可以多次迭代Iterable的实例，每次都使用新的Iterator实例完成迭代
 # 或者 Iterable的__iter__返回一个迭代器实例，让迭代器自己实现迭代细节，参照IterableSingle
-# 最常用的方式：只定义一个可迭代对象，__iter__方法使用生成器函数实现，例如IterableSingleCommon
+# 最常用的方式：只定义一个可迭代对象，__iter__方法使用生成器函数实现/返回一个生成器表达式(生成器对象)，例如IterableSingleCommon
 IterableObj_1 = IterableObj("IterableObj_1", ["abcd", "3", "11111", "l9000"])
 for aaa in IterableObj_1:
     print(aaa)
@@ -66,9 +66,6 @@ class IterableSingle:
         # self.elements = (ele for ele in elements if len(ele) >= 3)
 
     def __iter__(self):
-        # 1.
-        # return (ele for ele in self.elements)
-        # 2.
         return iter(self.elements)
 
 
@@ -78,6 +75,7 @@ class IterableSingleCommon:
         self.elements = [ele for ele in elements if len(ele) >= 3]
 
     def __iter__(self):
+        # 1. ↓↓↓ 生成器函数
         index = 0
         try:
             while True:
@@ -86,6 +84,8 @@ class IterableSingleCommon:
         except IndexError:
             # 生成器函数中的return 会触发生成器对象抛出StopIteration异常。不能在__iter__中直接raise
             return
+        # 2. ↓↓↓ 生成器表达式
+        # return (ele for ele in self.elements)
 
 
 print("-" * 100)
