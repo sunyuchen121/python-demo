@@ -34,7 +34,6 @@ class CardQue:
         return "__repr__"
 
 
-
 if __name__ == '__main__':
     CardInst = CardQue()
     print(len(CardInst))
@@ -49,4 +48,3 @@ if __name__ == '__main__':
     print("{}".format(CardInst))
     print(str(CardInst))
     print("%s" % CardInst)
-
