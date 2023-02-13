@@ -29,9 +29,6 @@ class IteratorObj:
         except IndexError:
             raise StopIteration
 
-    def roll_back(self):
-        pass
-
 
 IteratorObj_1 = IteratorObj(["abcd", "3", "11111", "l9000"])
 for iii in IteratorObj_1:
@@ -115,7 +112,8 @@ print("-" * 100)
 
 def gen_number(start, step=1, stop=None):
     print("----------calling gen_number----------")
-    while not stop or start <= stop:
+    forever = stop is None
+    while not forever or start <= stop:
         print("----------nexting gen_number----------")
         yield start
         start += step
