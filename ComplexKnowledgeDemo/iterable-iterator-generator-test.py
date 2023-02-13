@@ -84,6 +84,11 @@ def gen_number(start, step=1, stop=None):
         start += step
 
 
+# yield
+# yield from
+# 生成器表达式
+
+
 for i in gen_number(1, 2, 10):
     print(i)
 
