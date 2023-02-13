@@ -60,6 +60,9 @@ class IterableSingle:
     def __init__(self, name, elements):
         self.name = name
         self.elements = [ele for ele in elements if len(ele) >= 3]
+        # 这里的生成器表达式本质是 把一个生成器赋值给self.elements，即self.elements只可迭代生成一轮数据
+        # 不能把 迭代器/生成器 赋值给 类属性/实例属性，否则迭代一次这个属性后，生成器/迭代器就空了，无法再次使用
+        # self.elements = (ele for ele in elements if len(ele) >= 3)
 
     def __iter__(self):
         # 1.
