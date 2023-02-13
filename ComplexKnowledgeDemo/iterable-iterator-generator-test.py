@@ -119,6 +119,10 @@ def gen_number(start, step=1, stop=None):
         start += step
 
 
+def test_yield_from(*iterables):
+    pass
+
+
 # yield
 # yield from
 # 生成器表达式
