@@ -43,7 +43,7 @@ print(dir(inst_a))
 
 print("=" * 50)
 
-# 获取实例属性的三种方式，__getattr__对第一种 inst.__dict__[key]不生效
+# 获取实例属性的三种方式，__getattr__对第一种 inst.__dict__[key]不生效,因为他获取的属性是inst.__dict__，然后去字典中找key
 # print(inst_a.__dict__["a"])
 print(inst_a.a)
 print(getattr(inst_a, "a"))
@@ -51,29 +51,38 @@ print(getattr(inst_a, "a"))
 print(inst_a.__class__)
 
 
-class TestGetattrAndGetattritube(object):
-    class_p1 = "asd"
-    class_p2 = "dsa"
+class TestGetattrAndGetattribute(object):
+    class_p1 = "class_p1__value"
+    class_p2 = "class_p2__value"
 
     def __init__(self, param1, param2):
         self.inst_p1 = param1
         self.inst_p2 = param2
 
     def __getattribute__(self, item):
-        print("long     {}".format(item))
+        print("拦截器     {}".format(item))
         if item == "inst_p2":
-            return "覆盖inst_p2"
+            return "拦截inst_p2"
+        # __getattribute__拦截器中raise这个异常会继续走__getattr__，否则会返回None
         raise AttributeError
 
     def __getattr__(self, item):
-        print("short     {}".format(item))
+        print("兜底机制     {}".format(item))
         if item == "undefined_p":
             return "11112222333"
+        # 正常需要报下面的异常，否则会返回None，与实际不符。为了测试方便先注释掉
+        # raise AttributeError
 
 
-print('\n\n\n')
-test_inst = TestGetattrAndGetattritube("lll", "kkk")
+print("---" * 20 + '\n\n\n')
+print("以下内容需要注释和不注释__getattribute__方法分别测试，会有不同的内容" + '\n\n\n' + "---" * 20)
+test_inst = TestGetattrAndGetattribute("lll", "kkk")
 print(test_inst.class_p1)
 print(test_inst.__dict__)
+print(test_inst.__class__)
 print(getattr(test_inst, "inst_p2"))
-print(TestGetattrAndGetattritube.class_p2)
+print(test_inst.undefined_p)
+
+test_inst.class_p2 = "redefine class_p2"
+print(TestGetattrAndGetattribute.class_p2)
+print(test_inst.class_p2)
