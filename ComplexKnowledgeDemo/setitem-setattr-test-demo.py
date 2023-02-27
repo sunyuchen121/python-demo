@@ -43,3 +43,4 @@ print(test_inst.__dict__)
 test_inst["test_setitem"] = "success"
 # test_inst[{111}] = 5
 print(test_inst.__dict__)
+print(test_inst.test_setitem)
