@@ -44,6 +44,8 @@ print(dir(inst_a))
 print("=" * 50)
 
 # 获取实例属性的三种方式，__getattr__对第一种 inst.__dict__[key]不生效,因为他获取的属性是inst.__dict__，然后去字典中找key
+# 在没有属性拦截器等情况下，不可能找不到__dict__，所有也就走不到__getattr__
+
 # print(inst_a.__dict__["a"])
 print(inst_a.a)
 print(getattr(inst_a, "a"))
